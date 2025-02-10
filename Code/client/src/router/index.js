@@ -1,25 +1,48 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: MIT-0
-
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Router from "vue-router";
-import Main from '../components/Main'
-import Login from '../components/Login';
+import Main from '../components/Main.vue'
+import CourseList from '../components/CourseList.vue'
+import CourseDetails from '../views/CourseDetails.vue'
+import ResourceLibrary from '../components/ResourceLibrary.vue'
+import About from '../views/About.vue'
 
-Vue.use(Router);
+Vue.use(VueRouter)
 
 const routes = [
-  { path: "*", redirect: "/" },
-  { path: '/', name: 'Login', component: Login },
-  { path: '/main', name: 'Main', component: Main },
-  { path: '/about', name: 'About', component: () => import(/* webpackChunkName: "about" */ '../views/About.vue') },
-  { path: '/search', name: 'Search', component: () => import(/* webpackChunkName: "search" */ '../views/EasterEgg.vue') },
+  {
+    path: '/main',
+    name: 'Main',
+    component: Main
+  },
+  {
+    path: '/courses',
+    name: 'Courses',
+    component: CourseList
+  },
+  {
+    path: '/course/:id',
+    name: 'CourseDetails',
+    component: CourseDetails
+  },
+  {
+    path: '/resources',
+    name: 'Resources',
+    component: ResourceLibrary
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
+  },
+  {
+    path: '/',
+    redirect: '/main'
+  }
 ]
 
-export const router = new VueRouter({
-  mode: "history",
-  base: __dirname,
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
 

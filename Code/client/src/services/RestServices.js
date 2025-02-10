@@ -1,12 +1,29 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: MIT-0
+import axios from 'axios';
 
-import axios from 'axios'
-
-let serverUrl = "http://<SERVER_ALB_URL>" //this value is replaced by AWS CodeBuild 
+const apiClient = axios.create({
+  baseURL: 'http://localhost:3001',
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
 
 export default {
-    async getAllProducts() {
-        return await axios.get(serverUrl+"/api/getAllProducts");
-    },
-}
+  getAllCourses() {
+    return apiClient.get('/api/courses');
+  },
+  
+  getCourse(id) {
+    return apiClient.get(`/api/courses/${id}`);
+  },
+  
+  getResources() {
+    return apiClient.get('/api/resources');
+  },
+
+  // Original getAllProducts endpoint for backward compatibility
+  getAllProducts() {
+    return apiClient.get('/api/getAllProducts');
+  }
+};

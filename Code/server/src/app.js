@@ -1,91 +1,142 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: MIT-0
-
 const express = require('express');
+const AWS = require('aws-sdk');
+const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger/swagger');
+
 const app = express();
-var cors = require('cors');
-const AWS = require('aws-sdk')
-const port = 3001;
-
 app.use(cors());
+app.use(express.json());
 
-var swagger = require('./swagger/swagger') 
-app.use('/api/docs', swagger.router)
+// Configure AWS
+AWS.config.update({
+  region: 'us-east-1',  // Use your region from terraform
+  credentials: new AWS.SharedIniFileCredentials({ profile: 'default' })
+});
 
-/**
-* @swagger
-* /status:
-*   get:
-*     description: Dummy endpoint used as an API health check
-*     tags:
-*       - Status
-*     produces:
-*       - application/json
-*     responses:
-*       200:
-*         description: Retrieves a string with a health status
-*/
+// Initialize AWS DynamoDB
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+const TABLE_NAME = process.env.DYNAMODB_TABLE || 'assets-table-dev-env';
+
+// Health check endpoint
 app.get('/status', (req, res) => {
-  res.send({
-    message: 'AWS Demo server is up and running!'
-  })
-})
+  res.status(200).send('OK');
+});
 
-/**
-* @swagger
-* /api/getAllProducts:
-*   get:
-*     description: Retrieves all products available in the Dynamodb table
-*     tags:
-*       - Products
-*     produces:
-*       - application/json
-*     responses:
-*       200:
-*         description: Retrieves a list of products
-*/
-app.get('/api/getAllProducts', (req, res) => {
-  AB3_TABLE = "DYNAMODB_TABLE"  //DYNAMODB_TABLE value is retrieved from the generated resources created by the terraform code
-    const docClient = new AWS.DynamoDB.DocumentClient();
+// Get all products (original endpoint)
+app.get('/api/getAllProducts', async (req, res) => {
+  try {
     const params = {
-      TableName: AB3_TABLE
-    }
-  
-    docClient.scan(params, function(err, data) {
-      if (err) {
-        res.send({
-          code: err.status,
-          description: err.message
-        });
-      } else {
-        var products = data.Items
-        res.send({
-          products
-        });
+      TableName: TABLE_NAME
+    };
+    
+    const result = await dynamodb.scan(params).promise();
+    res.json({ products: result.Items });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Could not fetch products' });
+  }
+});
+
+// Get all courses
+app.get('/api/courses', async (req, res) => {
+  try {
+    const params = {
+      TableName: TABLE_NAME,
+      FilterExpression: '#type = :typeValue',
+      ExpressionAttributeNames: {
+        '#type': 'type'
+      },
+      ExpressionAttributeValues: {
+        ':typeValue': 'course'
       }
-    });
+    };
+    
+    const result = await dynamodb.scan(params).promise();
+    console.log('Courses result:', result.Items);  // Debug log
+    res.json({ courses: result.Items });
+  } catch (error) {
+    console.error('Error fetching courses:', error);
+    res.status(500).json({ error: 'Could not fetch courses' });
+  }
+});
 
-})
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found')
-    err.status = 404
-    next(err)
-  })
-
-// error handler
-app.use(function (err, req, res, next) {
-    console.error(`Error catched! ${err}`)
-  
-    let error = {
-        code: err.status,
-        description: err.message
+// Get course by ID
+app.get('/api/courses/:id', async (req, res) => {
+  try {
+    const params = {
+      TableName: TABLE_NAME,
+      Key: {
+        id: parseInt(req.params.id)  // Changed to parseInt
+      }
+    };
+    
+    const result = await dynamodb.get(params).promise();
+    console.log('Single course result:', result);  // Debug log
+    if (result.Item) {
+      res.json(result.Item);
+    } else {
+      res.status(404).json({ error: 'Course not found' });
     }
-    status: err.status || 500
-  
-    res.status(error.code).send(error)
-  })
+  } catch (error) {
+    console.error('Error fetching course:', error);
+    res.status(500).json({ error: 'Could not fetch course' });
+  }
+});
 
-app.listen(port)
-console.log('Server started on port ' + port)
+// Get learning resources
+app.get('/api/resources', async (req, res) => {
+  try {
+    const params = {
+      TableName: TABLE_NAME,
+      FilterExpression: '#type = :typeValue',
+      ExpressionAttributeNames: {
+        '#type': 'type'
+      },
+      ExpressionAttributeValues: {
+        ':typeValue': 'resource'
+      }
+    };
+    
+    const result = await dynamodb.scan(params).promise();
+    res.json({ resources: result.Items });
+  } catch (error) {
+    console.error('Error fetching resources:', error);
+    res.status(500).json({ error: 'Could not fetch resources' });
+  }
+});
+
+// Test endpoint to verify DynamoDB connection
+app.get('/api/test-db', async (req, res) => {
+  try {
+    const params = {
+      TableName: TABLE_NAME,
+      Limit: 1
+    };
+    
+    const result = await dynamodb.scan(params).promise();
+    res.json({
+      message: 'DynamoDB connection successful',
+      tableContents: result.Items,
+      tableName: TABLE_NAME
+    });
+  } catch (error) {
+    console.error('Database test error:', error);
+    res.status(500).json({
+      error: 'Database connection failed',
+      details: error.message,
+      tableName: TABLE_NAME
+    });
+  }
+});
+
+// Configure Swagger
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+  console.log(`DynamoDB Table: ${TABLE_NAME}`);
+});
+
+module.exports = app;

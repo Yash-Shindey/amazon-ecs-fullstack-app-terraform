@@ -1,0 +1,58 @@
+{
+  "Items": [
+    {
+      "id": 4,
+      "type": "course",
+      "title": "Kubernetes Mastery",
+      "description": "Master container orchestration with Kubernetes",
+      "image": "https://kubernetes.io/images/kubernetes-horizontal-color.png",
+      "duration": "12 hours",
+      "level": "Advanced"
+    },
+    {
+      "id": 5,
+      "type": "course",
+      "title": "CI/CD Pipeline Development",
+      "description": "Build robust continuous integration and deployment pipelines",
+      "image": "https://www.jenkins.io/images/jenkins-logo-title.svg",
+      "duration": "8 hours",
+      "level": "Intermediate"
+    },
+    {
+      "id": 6,
+      "type": "course",
+      "title": "Cloud Cost Optimization",
+      "description": "Learn strategies for optimizing cloud costs and resources",
+      "image": "https://cdn-icons-png.flaticon.com/512/6823/6823086.png",
+      "duration": "6 hours",
+      "level": "Intermediate"
+    },
+    {
+      "id": 7,
+      "type": "course",
+      "title": "Infrastructure as Code",
+      "description": "Master Terraform, CloudFormation, and Pulumi",
+      "image": "https://www.pulumi.com/logos/brand/avatar-on-white.svg",
+      "duration": "10 hours",
+      "level": "Advanced"
+    },
+    {
+      "id": 8,
+      "type": "course",
+      "title": "Cloud Security & Compliance",
+      "description": "Implement security best practices and compliance frameworks",
+      "image": "https://cdn-icons-png.flaticon.com/512/2092/2092663.png",
+      "duration": "9 hours",
+      "level": "Advanced"
+    },
+    {
+      "id": 9,
+      "type": "course",
+      "title": "Serverless Architecture",
+      "description": "Build scalable applications with serverless technologies",
+      "image": "https://cdn-icons-png.flaticon.com/512/5815/5815809.png",
+      "duration": "7 hours",
+      "level": "Intermediate"
+    }
+  ]
+}

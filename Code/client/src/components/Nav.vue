@@ -1,74 +1,56 @@
-<!-- Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. -->
-<!-- SPDX-License-Identifier: MIT-0 -->
-
 <template>
-  <div id="navbar">
-    <b-navbar toggleable="lg" type="dark" style="width: auto;" variant="dark" fixed="top">
-        <b-navbar-brand>
-            <router-link to="/main">
-            </router-link>
-            <router-link
-                class="ml-2"
-                to="/main"
-                style="color:white"
-                >Full Stack Demo with Amazon ECS + DevOps practices
-            </router-link>
-        </b-navbar-brand>
+  <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top">
+    <b-navbar-brand to="/main">Cloud Learning Platform</b-navbar-brand>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-        <b-collapse id="nav-collapse" is-nav>
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav>
+        <b-nav-item to="/courses">Courses</b-nav-item>
+        <b-nav-item to="/resources">Resources</b-nav-item>
+        <b-nav-item to="/about">About</b-nav-item>
+      </b-navbar-nav>
 
-            <!-- Right aligned nav items -->
-            <b-navbar-nav class="ml-auto">
-                <b-nav-form>
-                    <b-form-input size="sm" class="mr-sm-2" placeholder="Search for products"></b-form-input>
-                    <b-button size="sm" class="my-2 my-sm-0" type="submit" to='/search'>Search</b-button>
-                </b-nav-form>
+      <b-navbar-nav class="ml-auto">
+        <b-nav-form>
+          <b-form-input
+            size="sm"
+            class="mr-sm-2"
+            placeholder="Search..."
+          ></b-form-input>
+          <b-button size="sm" class="my-2 my-sm-0" type="submit">
+            Search
+          </b-button>
+        </b-nav-form>
 
-                <b-navbar-nav>
-                    <b-nav-item>
-                        <router-link
-                            class="ml-2"
-                            to="/about"
-                            style="color:white"
-                            >About
-                        </router-link>
-                    </b-nav-item>
-                </b-navbar-nav>
-
-                <b-nav-item-dropdown text="My Orders and lists" right>
-                    <b-dropdown-item disabled>Wishlist</b-dropdown-item>
-                    <b-dropdown-item disabled>Orders</b-dropdown-item>
-                    <b-dropdown-item disabled>Send a gift!</b-dropdown-item>
-                </b-nav-item-dropdown>
-
-                <b-nav-item-dropdown right>
-                    <template v-slot:button-content>
-                        <em>User</em>
-                    </template>
-                    <b-dropdown-item disabled>Profile</b-dropdown-item>
-                    <b-dropdown-item to='/'>Sign Out</b-dropdown-item>
-                </b-nav-item-dropdown>
-            </b-navbar-nav>
-        </b-collapse>
-    </b-navbar>
-  </div>
+        <b-nav-item-dropdown right>
+          <template #button-content>
+            <i class="fas fa-user"></i> Account
+          </template>
+          <b-dropdown-item href="#">Profile</b-dropdown-item>
+          <b-dropdown-item href="#">My Courses</b-dropdown-item>
+          <b-dropdown-item href="#">Settings</b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item to="/">Sign Out</b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
 </template>
 
 <script>
 export default {
-  name: "Nav",
-  methods: {
-    async logOutEvent() {
-      this.$router.push("/main");
-    },
-  }
+  name: 'Nav'
 };
 </script>
 
 <style scoped>
-    .img{
-        position: center;
-    }
+.navbar {
+  padding: 0.5rem 2rem;
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
 </style>
