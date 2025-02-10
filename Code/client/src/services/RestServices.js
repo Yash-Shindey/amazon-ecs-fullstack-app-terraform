@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+// Use the ALB server URL from terraform output
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'http://alb-dev-env-ser-1498127656.us-east-1.elb.amazonaws.com',
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -21,8 +22,7 @@ export default {
   getResources() {
     return apiClient.get('/api/resources');
   },
-
-  // Original getAllProducts endpoint for backward compatibility
+  
   getAllProducts() {
     return apiClient.get('/api/getAllProducts');
   }
