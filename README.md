@@ -136,10 +136,54 @@ Run the following command if you want to delete all the resources created before
 ```shell
 terraform destroy -var aws_profile="your-profile" -var AWS_REGION="your-region" -var environment_name="your-env" -var github_token="your-personal-token" -var repository_name="your-github-repository" - var repository_owner="the-github-repository-owner"
 ```
+## Project Overview
 
-## Security
+This project is a **Cloud Learning Platform** designed to provide structured learning resources and hands-on experience in **Cloud & DevOps**. The platform includes:
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+- **AWS Infrastructure**: ECS, DynamoDB, VPC, CodePipeline.
+- **Frontend**: Vue.js with Bootstrap Vue for interactive UI.
+- **Backend**: Node.js REST API with Swagger documentation.
+- **DevOps Implementation**: Terraform, Docker, CI/CD.
 
-## License
-This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.
+---
+
+## Screenshots
+
+### **Landing Page**
+![Landing Page](LandingPage2.jpeg)
+
+### **About Section**
+![About Page](About.jpeg)
+![About Page 2](About2.jpeg)
+
+### **Courses**
+![Courses](Courses.jpeg)
+
+### **Community Resources**
+![Community Resources](CommunityResources.jpeg)
+
+### **Documentation**
+![Resource Documentation](ResourceDocumentation.jpeg)
+
+### **Tools & Downloads**
+![Tools](ResourceTools.jpeg)
+
+### **Video Tutorials**
+![Video Resources](ResourceVideo.jpeg)
+
+---
+
+## Features
+- **AWS Infrastructure**: Multi-stage CodePipeline, Load Balanced Architecture.
+- **CI/CD Pipeline**: Automated deployments via GitHub Actions.
+- **Logging & Monitoring**: CloudWatch, ECS, ALB metrics.
+- **Security**: IAM roles, Least Privilege Access.
+
+
+
+
+
+
+
+
+his library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.
