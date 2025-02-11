@@ -150,26 +150,26 @@ This project is a **Cloud Learning Platform** designed to provide structured lea
 ## Screenshots
 
 ### **Landing Page**
-![Landing Page](LandingPage2.jpeg)
+![Landing Page](LandingPage2.png)
 
 ### **About Section**
-![About Page](About.jpeg)
-![About Page 2](About2.jpeg)
+![About Page](About.png)
+![About Page 2](About2.png)
 
 ### **Courses**
-![Courses](Courses.jpeg)
+![Courses](Courses.png)
 
 ### **Community Resources**
-![Community Resources](CommunityResources.jpeg)
+![Community Resources](CommunityResources.png)
 
 ### **Documentation**
-![Resource Documentation](ResourceDocumentation.jpeg)
+![Resource Documentation](ResourceDocumentation.png)
 
 ### **Tools & Downloads**
-![Tools](ResourceTools.jpeg)
+![Tools](ResourceTools.png)
 
 ### **Video Tutorials**
-![Video Resources](ResourceVideo.jpeg)
+![Video Resources](ResourceVideo.png)
 
 ---
 
