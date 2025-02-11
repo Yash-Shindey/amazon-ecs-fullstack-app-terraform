@@ -5,6 +5,12 @@
       "name": "<CONTAINER_NAME>",
       "image": "<REPO_URL>",
       "essential": true,
+      "environment": [
+        {
+          "name": "DYNAMODB_TABLE",
+          "value": "assets-table-dev-env"
+        }
+      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "secretOptions": null,
