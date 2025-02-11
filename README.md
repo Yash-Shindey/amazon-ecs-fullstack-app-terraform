@@ -46,9 +46,13 @@ terraform plan -var aws_profile="your-profile" -var aws_region="your-region" -va
 Example of the previous command with replaced dummy values:
 
 ```shell
-terraform plan -var aws_profile="development" -var aws_region="eu-central-1" -var environment_name="developmentenv" -var github_token="your-personal-token" -var repository_name="your-github-repository" -var repository_owner="the-github-repository-owner"
-```
- 
+terraform plan \
+  -var aws_region="us-east-1" \
+  -var environment_name="dev-env" \
+  -var github_token="Add in your own Personal Access Token from github" \
+  -var repository_name="amazon-ecs-fullstack-app-terraform" \
+  -var repository_owner="Yash-Shindey"
+ ```
 **5.** Review the terraform plan, take a look at the changes that terraform will execute:
 
 ```shell
