@@ -183,11 +183,3 @@ This project is a **Cloud Learning Platform** designed to provide structured lea
 - **Logging & Monitoring**: CloudWatch, ECS, ALB metrics.
 - **Security**: IAM roles, Least Privilege Access.
 
-
-
-
-
-
-
-
-his library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.
