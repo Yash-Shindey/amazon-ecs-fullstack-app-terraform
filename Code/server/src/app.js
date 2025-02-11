@@ -11,7 +11,6 @@ app.use(express.json());
 // Configure AWS
 AWS.config.update({
   region: 'us-east-1',  // Use your region from terraform
-  credentials: new AWS.SharedIniFileCredentials({ profile: 'default' })
 });
 
 // Initialize AWS DynamoDB
