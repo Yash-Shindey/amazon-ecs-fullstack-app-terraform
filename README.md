@@ -1,4 +1,37 @@
 
+## Screenshots
+
+### **Landing Page**
+![Landing Page](LandingPage2.png)
+
+### **About Section**
+![About Page](About.png)
+![About Page 2](About2.png)
+
+### **Courses**
+![Courses](Courses.png)
+
+### **Community Resources**
+![Community Resources](CommunityResources.png)
+
+### **Documentation**
+![Resource Documentation](ResourceDocumentation.png)
+
+### **Tools & Downloads**
+![Tools](ResourceTools.png)
+
+### **Video Tutorials**
+![Video Resources](ResourceVideo.png)
+
+---
+
+## Features
+- **AWS Infrastructure**: Multi-stage CodePipeline, Load Balanced Architecture.
+- **CI/CD Pipeline**: Automated deployments via GitHub Actions.
+- **Logging & Monitoring**: CloudWatch, ECS, ALB metrics.
+- **Security**: IAM roles, Least Privilege Access.
+
+
 ## Prerequisites
 There are general steps that you must follow in order to launch the infrastructure resources.
 
@@ -150,36 +183,3 @@ This project is a **Cloud Learning Platform** designed to provide structured lea
 - **DevOps Implementation**: Terraform, Docker, CI/CD.
 
 ---
-
-## Screenshots
-
-### **Landing Page**
-![Landing Page](LandingPage2.png)
-
-### **About Section**
-![About Page](About.png)
-![About Page 2](About2.png)
-
-### **Courses**
-![Courses](Courses.png)
-
-### **Community Resources**
-![Community Resources](CommunityResources.png)
-
-### **Documentation**
-![Resource Documentation](ResourceDocumentation.png)
-
-### **Tools & Downloads**
-![Tools](ResourceTools.png)
-
-### **Video Tutorials**
-![Video Resources](ResourceVideo.png)
-
----
-
-## Features
-- **AWS Infrastructure**: Multi-stage CodePipeline, Load Balanced Architecture.
-- **CI/CD Pipeline**: Automated deployments via GitHub Actions.
-- **Logging & Monitoring**: CloudWatch, ECS, ALB metrics.
-- **Security**: IAM roles, Least Privilege Access.
-
